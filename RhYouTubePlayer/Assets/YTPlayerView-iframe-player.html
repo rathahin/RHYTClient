@@ -15,24 +15,26 @@
 -->
 <!DOCTYPE html>
 <html>
+  <meta name="viewport" content="maximum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <head>
     <style>
-    body { margin: 0; }
+      body { margin: 0;}
     
-    body iframe,
-    bodyobject,
-    body embed {
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
     }
+    - See more at: http://avexdesigns.com/responsive-youtube-embed/#sthash.OJRSF3zl.EHie7IIl.dpuf
     /*- See more at: http://avexdesigns.com/responsive-youtube-embed/#sthash.OJRSF3zl.dpuf*/
     </style>
 </head>
 <body>
-    <div id="player"></div>
+    <div class="video-container"><div id="player"></div></div>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
     var player;

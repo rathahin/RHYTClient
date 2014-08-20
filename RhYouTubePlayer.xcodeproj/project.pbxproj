@@ -14,6 +14,8 @@
 		DEBAF8CB199B29FA002C3B50 /* RhYouTubePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBAF8CA199B29FA002C3B50 /* RhYouTubePlayerTests.swift */; };
 		DEBAF8D6199B394F002C3B50 /* RhYouTubePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBAF8D5199B394F002C3B50 /* RhYouTubePlayerView.swift */; };
 		DEBAF8D8199BB3AA002C3B50 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = DEBAF8D7199BB3AA002C3B50 /* Assets */; };
+		DEF92EFB19A4DB95003EBDEC /* WKYoutubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF92EFA19A4DB95003EBDEC /* WKYoutubeView.swift */; };
+		DEF92EFD19A4E64A003EBDEC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF92EFC19A4E64A003EBDEC /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		DEBAF8CA199B29FA002C3B50 /* RhYouTubePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhYouTubePlayerTests.swift; sourceTree = "<group>"; };
 		DEBAF8D5199B394F002C3B50 /* RhYouTubePlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RhYouTubePlayerView.swift; sourceTree = "<group>"; };
 		DEBAF8D7199BB3AA002C3B50 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
+		DEF92EFA19A4DB95003EBDEC /* WKYoutubeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKYoutubeView.swift; sourceTree = "<group>"; };
+		DEF92EFC19A4E64A003EBDEC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEF92EFD19A4E64A003EBDEC /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +66,7 @@
 		DEBAF8A9199B29FA002C3B50 = {
 			isa = PBXGroup;
 			children = (
+				DEF92EFC19A4E64A003EBDEC /* WebKit.framework */,
 				DEBAF8B4199B29FA002C3B50 /* RhYouTubePlayer */,
 				DEBAF8C7199B29FA002C3B50 /* RhYouTubePlayerTests */,
 				DEBAF8B3199B29FA002C3B50 /* Products */,
@@ -119,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				DEBAF8D5199B394F002C3B50 /* RhYouTubePlayerView.swift */,
+				DEF92EFA19A4DB95003EBDEC /* WKYoutubeView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -223,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEF92EFB19A4DB95003EBDEC /* WKYoutubeView.swift in Sources */,
 				DEBAF8BA199B29FA002C3B50 /* ViewController.swift in Sources */,
 				DEBAF8D6199B394F002C3B50 /* RhYouTubePlayerView.swift in Sources */,
 				DEBAF8B8199B29FA002C3B50 /* AppDelegate.swift in Sources */,
@@ -342,7 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = RhYouTubePlayer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -354,7 +362,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = RhYouTubePlayer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

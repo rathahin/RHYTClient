@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, RhYouTubePlayerViewDelegate {
-  @IBOutlet weak var playerView: YTPlayerView!
+  @IBOutlet weak var playerView: WKYoutubeView!
                             
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,8 +22,8 @@ class ViewController: UIViewController, RhYouTubePlayerViewDelegate {
       "autohide": 1,
       "showinfo": 0,
       "modestbranding": 1]
-    self.playerView.delegate = self
-    self.playerView.loadWithVideoId(videoId2, playerVars: playerVars)
+
+
   }
 
   override func didReceiveMemoryWarning() {
@@ -35,7 +35,7 @@ class ViewController: UIViewController, RhYouTubePlayerViewDelegate {
     self.playerView.enterFullscreen()
   }
   @IBAction func exitFullscreenAction(sender: UIButton) {
-    self.playerView.exitFullscreen()
+
   }
 
 
