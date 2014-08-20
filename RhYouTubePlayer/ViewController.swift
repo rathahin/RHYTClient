@@ -15,6 +15,7 @@ class ViewController: UIViewController, RhYouTubePlayerViewDelegate {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     let videoId:NSString = "M7lc1UVf-VE"
+    let videoId2:NSString = "TXvkIboHbBk"
     let playerVars = [
       "controls": 0,
       "playsinline": 1,
@@ -22,7 +23,7 @@ class ViewController: UIViewController, RhYouTubePlayerViewDelegate {
       "showinfo": 0,
       "modestbranding": 1]
     self.playerView.delegate = self
-    self.playerView.loadWithVideoId(videoId, playerVars: playerVars)
+    self.playerView.loadWithVideoId(videoId2, playerVars: playerVars)
   }
 
   override func didReceiveMemoryWarning() {

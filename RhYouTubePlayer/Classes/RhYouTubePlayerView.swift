@@ -108,13 +108,13 @@ class YTPlayerView: UIView, UIWebViewDelegate {
   var delegate: RhYouTubePlayerViewDelegate?
   
   func loadWithVideoId(videoId:NSString, playerVars:NSDictionary = NSDictionary()) -> Bool{
-    var playerVarsValue = playerVars
+    var playerVarsValue:NSDictionary? = playerVars
     
-    if playerVarsValue == nil {
+    if (playerVarsValue == nil) {
       playerVarsValue = NSDictionary()
     }
     
-    let playerParams = ["videoId": videoId, "playerVars": playerVarsValue]
+    let playerParams = ["videoId": videoId, "playerVars": playerVarsValue!]
     return self.loadWithPlayerParams(playerParams)
   }
   
@@ -253,11 +253,11 @@ class YTPlayerView: UIView, UIWebViewDelegate {
   func availablePlaybackRates() -> NSArray {
     
     let returnValue:NSString = self.stringFromEvaluatingJavaScript("player.getAvailablePlaybackRates();")
-    let playbackRateData:NSData = returnValue.dataUsingEncoding(NSUTF8StringEncoding)
+    let playbackRateData:NSData = returnValue.dataUsingEncoding(NSUTF8StringEncoding)!
     var jsonDeserializationError:NSError?
     let playbackRates:NSArray = NSJSONSerialization.JSONObjectWithData(playbackRateData, options: NSJSONReadingOptions.MutableContainers, error: &jsonDeserializationError) as NSArray
     
-    if jsonDeserializationError! != nil {
+    if (jsonDeserializationError != nil) {
       return NSArray()
     }
     
@@ -319,7 +319,7 @@ class YTPlayerView: UIView, UIWebViewDelegate {
   // MARK:- Playlist
   func playlist() -> NSArray {
     let returnValue:NSString = self.stringFromEvaluatingJavaScript("player.getPlaylist();")
-    let playlistData:NSData = returnValue.dataUsingEncoding(NSUTF8StringEncoding)
+    let playlistData:NSData = returnValue.dataUsingEncoding(NSUTF8StringEncoding)!
     var jsonDeserializationError:NSError?
     let videoIds:NSArray = NSJSONSerialization.JSONObjectWithData(playlistData, options: NSJSONReadingOptions.MutableContainers, error: &jsonDeserializationError) as NSArray
     if jsonDeserializationError != nil {
@@ -351,7 +351,7 @@ class YTPlayerView: UIView, UIWebViewDelegate {
     let returnValue:NSString = self.stringFromEvaluatingJavaScript("player.getAvailableQualityLevels();")
     let availableQualityLevelsData = returnValue.dataUsingEncoding(NSUTF8StringEncoding)
     var jsonDeserializationError:NSError?
-    let rawQualityValues:NSArray = NSJSONSerialization.JSONObjectWithData(availableQualityLevelsData, options: NSJSONReadingOptions.MutableContainers, error: &jsonDeserializationError) as NSArray
+    let rawQualityValues:NSArray = NSJSONSerialization.JSONObjectWithData(availableQualityLevelsData!, options: NSJSONReadingOptions.MutableContainers, error: &jsonDeserializationError) as NSArray
     if jsonDeserializationError != nil {
       return NSArray()
     }
@@ -390,7 +390,7 @@ class YTPlayerView: UIView, UIWebViewDelegate {
     playerParams.setValue("100%", forKey: "width")
     playerParams.setValue(playerCallbacks, forKey: "events")
     
-    if !playerParams.objectForKey("playerVars") {
+    if !(playerParams.objectForKey("playerVars") != nil) {
       playerParams.setValue(NSDictionary(), forKey: "playerVars")
     }
     
@@ -399,7 +399,7 @@ class YTPlayerView: UIView, UIWebViewDelegate {
     self.addSubview(self.webView!)
     
     var error:NSError?
-    let path:NSString = NSBundle.mainBundle().pathForResource("YTPlayerView-iframe-player", ofType: "html", inDirectory: "Assets")
+    let path:NSString = NSBundle.mainBundle().pathForResource("YTPlayerView-iframe-player", ofType: "html", inDirectory: "Assets")!
     var embedHTMLTemplate = NSString.stringWithContentsOfFile(path, encoding: NSUTF8StringEncoding, error: &error)
     
     if error != nil {
@@ -409,7 +409,7 @@ class YTPlayerView: UIView, UIWebViewDelegate {
     
     // Render the playerVars as a JSON dictionary.
     var jsonRenderingError:NSError?
-    let jsonDate:NSData = NSJSONSerialization.dataWithJSONObject(playerParams, options:.PrettyPrinted, error: &jsonRenderingError)
+    let jsonDate:NSData = NSJSONSerialization.dataWithJSONObject(playerParams, options:.PrettyPrinted, error: &jsonRenderingError)!
     
     if ((jsonRenderingError) != nil) {
       NSLog("Attempted configuration of player with invalid playerVars: %@ \tError: %@", playerParams, jsonRenderingError!)
@@ -628,15 +628,15 @@ class YTPlayerView: UIView, UIWebViewDelegate {
   * @param url A URL of the format http://ytplayer/action.
   */
   func notifyDelegateOfYouTubeCallbackUrl(url:NSURL) {
-    let action:NSString = url.host
+    let action:NSString = url.host!
     
     // We know the query can only be of the format http://ytplayer?data=SOMEVALUE,
     // so we parse out the value.
-    let query:NSString = url.query
+    let query:NSString? = url.query!
     var dataString:NSString = ""
     
-    if query != nil {
-      dataString = query.componentsSeparatedByString("=")[1] as NSString
+    if (query != nil) {
+      dataString = query!.componentsSeparatedByString("=")[1] as NSString
     }
     
     if action.isEqual(kYTPlayerCallbackOnReady) {
@@ -682,10 +682,11 @@ class YTPlayerView: UIView, UIWebViewDelegate {
   
   func handleHttpNavigationToUrl(url:NSURL) -> Bool {
     var error:NSError?
-    let regex:NSRegularExpression = NSRegularExpression.regularExpressionWithPattern(kYTPlayerEmbedUrlRegexPattern, options: NSRegularExpressionOptions.CaseInsensitive, error: &error)
-    let match:NSTextCheckingResult = regex.firstMatchInString(url.absoluteString, options: NSMatchingOptions.ReportProgress, range: NSMakeRange(0, url.absoluteString.utf16Count))
+    let regex:NSRegularExpression = NSRegularExpression.regularExpressionWithPattern(kYTPlayerEmbedUrlRegexPattern, options: NSRegularExpressionOptions.CaseInsensitive, error: &error)!
+    let absoluteString:NSString = url.absoluteString! as NSString
+    let match:NSTextCheckingResult? = regex.firstMatchInString(absoluteString, options: NSMatchingOptions.ReportProgress, range: NSMakeRange(0, absoluteString.length))
     
-    if match != nil {
+    if (match != nil) {
       return true
     } else {
       UIApplication.sharedApplication().openURL(url)

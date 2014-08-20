@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,20 +17,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3FL-M7-hPV" customClass="YTPlayerView" customModule="RhYouTubePlayer" customModuleProvider="target">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3FL-M7-hPV" customClass="YTPlayerView" customModule="RhYouTubePlayer" customModuleProvider="target">
                                 <rect key="frame" x="140" y="180" width="320" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="EPe-Qv-tjR"/>
-                                    <constraint firstAttribute="height" constant="240" id="HZu-0M-h1F"/>
+                                    <constraint firstAttribute="width" constant="320" id="OPE-Sn-QV0"/>
+                                    <constraint firstAttribute="height" constant="240" id="vuc-Kr-TwC"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="OPE-Sn-QV0"/>
+                                        <exclude reference="vuc-Kr-TwC"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="OPE-Sn-QV0"/>
+                                        <include reference="vuc-Kr-TwC"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="3FL-M7-hPV" secondAttribute="centerY" id="2Nh-lo-zGg"/>
-                            <constraint firstAttribute="centerX" secondItem="3FL-M7-hPV" secondAttribute="centerX" id="Ikl-FT-zPd"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="3FL-M7-hPV" secondAttribute="bottom" id="0MV-9h-Fqr"/>
+                            <constraint firstItem="3FL-M7-hPV" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="2mx-ZM-Mt0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3FL-M7-hPV" secondAttribute="trailing" id="Fx5-SR-P3r"/>
+                            <constraint firstItem="3FL-M7-hPV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="IWD-Ki-ufM"/>
+                            <constraint firstAttribute="centerX" secondItem="3FL-M7-hPV" secondAttribute="centerX" id="ahG-ft-0ez"/>
+                            <constraint firstAttribute="centerY" secondItem="3FL-M7-hPV" secondAttribute="centerY" id="goQ-YO-GMa"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2mx-ZM-Mt0"/>
+                                <exclude reference="Fx5-SR-P3r"/>
+                                <exclude reference="IWD-Ki-ufM"/>
+                                <exclude reference="ahG-ft-0ez"/>
+                                <exclude reference="goQ-YO-GMa"/>
+                                <exclude reference="0MV-9h-Fqr"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="2mx-ZM-Mt0"/>
+                                <include reference="Fx5-SR-P3r"/>
+                                <include reference="IWD-Ki-ufM"/>
+                                <include reference="0MV-9h-Fqr"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="ahG-ft-0ez"/>
+                                <include reference="goQ-YO-GMa"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="playerView" destination="3FL-M7-hPV" id="Cmi-C8-VMj"/>
