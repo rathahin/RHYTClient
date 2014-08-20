@@ -4,6 +4,8 @@
 //
 //  Created by Ratha Hin on 8/13/14.
 //  Copyright (c) 2014 rathahin. All rights reserved.
+//  demo url = https://developers.google.com/youtube/youtube_player_demo
+//  parameters = https://developers.google.com/youtube/player_parameters
 //
 
 import UIKit
@@ -45,7 +47,7 @@ enum YTPlayerError:Int {
   
 }
 
-/** 
+/**
 
 A delegate for ViewCOntrollers to respond to YouTube player events outside
 of the view, such as changes to video playback state or playback errors.
@@ -103,10 +105,48 @@ let kYTPlayerCallbackOnYouTubeIframeAPIReady:String = "onYouTubeIframeAPIReady";
 let kYTPlayerEmbedUrlRegexPattern:String = "^http(s)://(www.)youtube.com/embed/(.*)$";
 
 class YTPlayerView: UIView, UIWebViewDelegate {
-
+  
   var webView: UIWebView?
   var delegate: RhYouTubePlayerViewDelegate?
+  var originSuperView: UIView?
+  var originFrame: CGRect?
   
+  // MARK:- Lazy
+  private lazy var overlayWindow:UIWindow = {
+    /*
+     if(!self.overlayView.superview){
+     NSEnumerator *frontToBackWindows = [[[UIApplication sharedApplication]windows]reverseObjectEnumerator];
+     
+     for (UIWindow *window in frontToBackWindows)
+     if (window.windowLevel == UIWindowLevelNormal) {
+     [window addSubview:self.overlayView];
+     break;
+     }
+     }
+     */
+    var topWindow:UIWindow?
+    let frontToBackWindows:NSArray = UIApplication.sharedApplication().windows
+    for window in frontToBackWindows {
+      if window.windowLevel == UIWindowLevelNormal {
+        topWindow = window as? UIWindow
+      }
+    }
+    
+    return topWindow!
+    
+    }()
+  
+  override init(frame: CGRect) {
+    // Initialize here the variables of the subclass
+    super.init(frame: frame)
+    self.commonSetupOnInit()
+    // Initialize here the variables of the super class
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+ 
   func loadWithVideoId(videoId:NSString, playerVars:NSDictionary = NSDictionary()) -> Bool{
     var playerVarsValue:NSDictionary? = playerVars
     
@@ -430,6 +470,7 @@ class YTPlayerView: UIView, UIWebViewDelegate {
     webView.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight)
     webView.scrollView.scrollEnabled = false
     webView.scrollView.bounces = false
+    webView.backgroundColor = UIColor.yellowColor()
     
     return webView
   }
@@ -692,5 +733,30 @@ class YTPlayerView: UIView, UIWebViewDelegate {
       UIApplication.sharedApplication().openURL(url)
       return false
     }
+  }
+  
+  // MARK:- Updating API
+  
+  func enterFullscreen() {
+    self.overlayWindow.addSubview(self.webView!)
+    self.webView!.frame = self.overlayWindow.bounds
+  }
+  
+  func exitFullscreen() {
+    self.webView?.allowsInlineMediaPlayback = true
+  }
+  
+  func commonSetupOnInit() {
+    
+  }
+  
+  /**
+  * The 'redrawPlayer' function builds the SWF URL based on the selected video
+  * and other parameters that the user may have selected. It also redraws the
+  * player on the page.
+  * @return {string} The SWF URL for the video player.
+  */
+  func redrawPlayer() {
+    
   }
 }

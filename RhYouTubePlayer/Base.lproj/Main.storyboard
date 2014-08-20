@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
         <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -17,11 +17,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3FL-M7-hPV" customClass="YTPlayerView" customModule="RhYouTubePlayer" customModuleProvider="target">
-                                <rect key="frame" x="140" y="180" width="320" height="240"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ys6-qt-mrG">
+                                <rect key="frame" x="33" y="28" width="70" height="30"/>
+                                <state key="normal" title="Fullscreen">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fullscreenAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qs0-a8-hfE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jid-kY-xPN">
+                                <rect key="frame" x="140" y="28" width="87" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="87" id="Gww-lq-QJn"/>
+                                </constraints>
+                                <state key="normal" title="Close">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="exitFullscreenAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="O2a-HR-iuN"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3FL-M7-hPV" customClass="YTPlayerView" customModule="RhYouTubePlayer" customModuleProvider="target">
+                                <rect key="frame" x="140" y="79" width="320" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="4aI-6s-GL6"/>
                                     <constraint firstAttribute="width" constant="320" id="OPE-Sn-QV0"/>
+                                    <constraint firstAttribute="height" constant="240" id="uwe-MO-fcq"/>
                                     <constraint firstAttribute="height" constant="240" id="vuc-Kr-TwC"/>
                                 </constraints>
                                 <variation key="default">
@@ -29,6 +52,9 @@
                                         <exclude reference="OPE-Sn-QV0"/>
                                         <exclude reference="vuc-Kr-TwC"/>
                                     </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="16" y="20" width="368" height="380"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
@@ -38,14 +64,20 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jid-kY-xPN" firstAttribute="leading" secondItem="ys6-qt-mrG" secondAttribute="trailing" constant="37" id="04S-9S-jx1"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="3FL-M7-hPV" secondAttribute="bottom" id="0MV-9h-Fqr"/>
                             <constraint firstItem="3FL-M7-hPV" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="2mx-ZM-Mt0"/>
+                            <constraint firstItem="ys6-qt-mrG" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="9FT-mj-Ikr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3FL-M7-hPV" secondAttribute="trailing" id="Fx5-SR-P3r"/>
+                            <constraint firstItem="3FL-M7-hPV" firstAttribute="top" secondItem="jid-kY-xPN" secondAttribute="bottom" constant="21" id="I5k-2L-1cy"/>
                             <constraint firstItem="3FL-M7-hPV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="IWD-Ki-ufM"/>
+                            <constraint firstItem="jid-kY-xPN" firstAttribute="baseline" secondItem="ys6-qt-mrG" secondAttribute="baseline" id="Rrn-Mm-3Bv"/>
                             <constraint firstAttribute="centerX" secondItem="3FL-M7-hPV" secondAttribute="centerX" id="ahG-ft-0ez"/>
+                            <constraint firstItem="ys6-qt-mrG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="17" id="g5T-8K-PWm"/>
                             <constraint firstAttribute="centerY" secondItem="3FL-M7-hPV" secondAttribute="centerY" id="goQ-YO-GMa"/>
+                            <constraint firstAttribute="centerX" secondItem="3FL-M7-hPV" secondAttribute="centerX" id="p3e-77-gZd"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -63,6 +95,14 @@
                                 <include reference="Fx5-SR-P3r"/>
                                 <include reference="IWD-Ki-ufM"/>
                                 <include reference="0MV-9h-Fqr"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="2mx-ZM-Mt0"/>
+                                <exclude reference="Fx5-SR-P3r"/>
+                                <exclude reference="IWD-Ki-ufM"/>
+                                <exclude reference="0MV-9h-Fqr"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">

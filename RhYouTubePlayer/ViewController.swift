@@ -15,9 +15,9 @@ class ViewController: UIViewController, RhYouTubePlayerViewDelegate {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     let videoId:NSString = "M7lc1UVf-VE"
-    let videoId2:NSString = "TXvkIboHbBk"
+    let videoId2:NSString = "AjjzJiX4uZo"
     let playerVars = [
-      "controls": 0,
+      "controls": 1,
       "playsinline": 1,
       "autohide": 1,
       "showinfo": 0,
@@ -29,6 +29,13 @@ class ViewController: UIViewController, RhYouTubePlayerViewDelegate {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+
+  @IBAction func fullscreenAction(sender: UIButton) {
+    self.playerView.enterFullscreen()
+  }
+  @IBAction func exitFullscreenAction(sender: UIButton) {
+    self.playerView.exitFullscreen()
   }
 
 
